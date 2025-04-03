@@ -200,7 +200,7 @@ class CopilotConnector:
                         "inputMethod": "Keyboard",
                         "text": prompt,
                         "entityAnnotationTypes": ["People", "File", "Event", "Email", "TeamsMessage"],
-                        "requestId": "6eaf112117f7ecbfa4cef5495f098e59",
+                        "requestId": str(uuid.uuid4()),
                         "locationInfo": {"timeZoneOffset": 3, "timeZone": "Asia/Jerusalem"},
                         "locale": "en-US",
                         "messageType": "Chat",
