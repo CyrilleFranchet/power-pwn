@@ -1,5 +1,5 @@
 import json
-from typing import Final, Optional
+from typing import Final, Optional, List
 
 from typing_extensions import override
 
@@ -55,7 +55,7 @@ class WebsocketMessage(IWebsocketMessage):
 
     def __parse(self) -> WebsocketParsedMessage:
         copilot_message: str = ""
-        suggestions: list[str] = []
+        suggestions: List[str] = []
         is_disengaged = False
 
         is_success = True
@@ -92,8 +92,8 @@ class WebsocketMessage(IWebsocketMessage):
             copilot_message=copilot_message, is_success=is_success, is_disengaged=is_disengaged, suggestions=suggestions, type=self.type()
         )
 
-    def __extract_suggestions(self, message: dict) -> list[str]:
-        suggestions: list[str] = []
+    def __extract_suggestions(self, message: dict) -> List[str]:
+        suggestions: List[str] = []
         for suggestion in message.get("suggestedResponses", []):
             suggestions.append(suggestion["text"])
         return suggestions
@@ -101,7 +101,7 @@ class WebsocketMessage(IWebsocketMessage):
     def __parse_message_for_copilot_final(self) -> str:
         messages = self.__json_message["item"]["messages"]
         copilot_message = ""
-        suggestions: list[str] = []
+        suggestions: List[str] = []
         is_disengaged = False
         for message in messages:
             message_type = message["messageType"]
